@@ -1,0 +1,37 @@
+
+
+  <div class="rightclass sidebox boxbg">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada sapien sit amet est pellentesque aliquam non at purus. Ut non auctor orci. Proin sed viverra quam. Aenean et odio eu nisl fringilla volutpat at eu enim. Nunc ac laoreet elit, nec placerat libero. Sed in purus id est varius laoreet. Proin luctus scelerisque ultrices. Aenean dolor purus, luctus sed mauris sed, vehicula rhoncus dui. Nulla feugiat diam ut accumsan interdum. Mauris vitae libero finibus, consequat nulla a, malesuada augue. Curabitur tellus erat, porttitor at metus sit amet, consectetur fringilla lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis metus eu nulla suscipit fermentum. Etiam congue commodo euismod. Donec urna ex, mattis ac feugiat ac, sagittis imperdiet turpis.</p>
+  </div>
+<div id="posts" class="middle-class fixed">
+    <% @posts.each do |post| %><br/>
+      <div class="box boxbg">
+        <div class="boximg">
+        <%=link_to image_tag(post.image.url(:medium), :class => "image"), post %><br/>
+        </div>
+        <div class="center_text">
+        <%= post.description %><br/>
+        </div><br/>
+        <%= simple_format "@#{post.user.name if post.user}"%><br/><br/>
+        <div class="alignright">
+          <div class="btnd floatright">
+            <% if post.user == current_user %>
+              <%= button_to 'Edit', edit_post_path(post), class:"btn buttonbg", :method => "get" %>
+              <%= button_to 'Delete', post, class:"btn buttonbg leftmargin", :method => "delete", data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </div>
+        </div>
+        <div class="upvote_container">
+        <div class="upvote_font">
+        <%= post.plusminus %>
+        </div>
+        <%= link_to image_tag(("arrow.png"), :class => "upvotearrow"), vote_up_post_path(post), :method => :post, class: "leftmargin" %>
+        <%= link_to image_tag(("undo.png"), :class => "upvotearrow"), vote_undo_post_path(post), :method => :post, class: "leftmargin" %>
+        <%= link_to image_tag(("arrow.png"), :class => "downvotearrow"), vote_down_post_path(post), :method => :post, class: "leftmargin" %><br/><br/>
+        </div>
+
+      </div>
+    <% end %>
+<br/>
+  <%= will_paginate @posts, renderer: WillPaginateInfinite::InfinitePagination %>
+</div>

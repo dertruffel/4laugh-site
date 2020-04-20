@@ -1,0 +1,30 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<div class="middle-class">
+  <div class="L_box boxbg">
+  <%= image_tag @post.image.url(:large), class:"image_show" %><br/>
+  <b>Description:</b>
+  <%= @post.description %><br/><%= simple_format "@#{@post.user.name}"%><br/><br/><br/>
+    <div class="upvote_container">
+      <div class="upvote_font">
+        <%= @post.plusminus %>
+      </div>
+      <%= link_to image_tag(("arrow.png"), :class => "upvotearrow"), vote_up_post_path(@post), :method => :post, class: "leftmargin" %>
+      <%= link_to image_tag(("undo.png"), :class => "upvotearrow"), vote_undo_post_path(@post), :method => :post, class: "leftmargin" %>
+      <%= link_to image_tag(("arrow.png"), :class => "downvotearrow"), vote_down_post_path(@post), :method => :post, class: "leftmargin" %><br/><br/>
+    </div>
+    <div class="alignright">
+
+      <div class="btnd floatright">
+        <% if @post.user == current_user %>
+          <%= button_to 'Edit', edit_post_path(@post), class:"btn buttonbg", :method => "get" %>
+          <%= button_to 'Delete', @post, class:"btn buttonbg leftmargin", :method => "delete", data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= button_to 'Back', posts_path, class:"btn buttonbg middle-class", :method => "get" %>
+      </div>
+</div>
+
