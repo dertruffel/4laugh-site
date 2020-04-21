@@ -5,7 +5,6 @@ ruby '2.6.5'
 
 
 gem 'rails', '~> 6.0.0'
-gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'sass-rails'
 gem 'webpacker'
@@ -26,7 +25,7 @@ gem 'will_paginate'
 gem 'will_paginate_infinite'
 gem 'inline_svg'
 gem 'mobile-fu'
-
+gem 'pg'
 
 
 
