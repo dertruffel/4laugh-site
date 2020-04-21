@@ -12,7 +12,7 @@ module Forlaugh
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.middleware.use Mobvious::Manager
-    Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
+
     config.active_storage.service = :local
 
     # Settings in config/environments/* take precedence over those specified here.
